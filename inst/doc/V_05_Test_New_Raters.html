@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Florian Berding and Julia Pargmann" />
+
+<meta name="date" content="2023-01-05" />
+
+<title>5) Test New Raters</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">5) Test New Raters</h1>
+<h4 class="author">Florian Berding and Julia Pargmann</h4>
+<h4 class="date">2023-01-05</h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>1 Introduction</h1>
+<p>Many scientific studies include the development of a new coding
+scheme for their study which is typically the focus of introductory
+literature of content analysis (Krippendorff, 2019; Kuckartz, 2018;
+Mayring, 2015; Schreier, 2012). In these cases, the reliability can be
+estimated and analyzed as described in the first <a href="iotarelr.html">vignette</a>. In contrast to the literature for new
+coding schemes, less recommendations refer to the application of
+existing coding schemes, which are available from published studies or
+other sources. In these cases, it is not necessary to develop a new
+scheme, but rather to apply an existing one to new data, often along
+with new raters. The application of an existing coding scheme to new
+data has several reasons.</p>
+<ul>
+<li>First, studies using the same coding scheme can be directly
+compared, contributing to knowledge accumulation in a specific topic or
+discipline.</li>
+<li>Second, applying an existing coding schemes provides the opportunity
+to prove the results of prior studies by trying to reproduce them.</li>
+<li>Third, using an existing scheme saves resources, since ideally, the
+improvement cycle for developing is not necessary. This saves capacities
+which then become available for other important study characteristics
+(greater sample sizes, refining specific categories, considering more
+categories, etc.).</li>
+</ul>
+<p>Estimating the reliability of codings based on an existing coding
+scheme differs from estimating the reliability in the development a
+coding scheme. The phase of developing a coding scheme aims to provide a
+theoretically and empirically sound guide for data analysis. This
+includes that researchers and raters clear up their own interpretation
+of categories and data and develop the same understanding of the
+categories based on theory and empirical evidence. Ideally, the final
+coding scheme is precise enough to document this shared understanding
+and to guide users to the same interpretation of data and the same
+assignments of data to categories.</p>
+<p>In contrast, the phase of applying an existing coding scheme by new
+raters does not aim to incorporate the interpretation of data and
+categories of the new raters. The aim is to train new raters to achieve
+the understanding of data and categories documented in the scheme. The
+existing coding scheme represents an already discussed and validated
+understanding, which new raters have to acquire in order to apply the
+coding scheme in the same way as in its development study or any other
+preliminary study. As a consequence, reliability estimation has to
+consider the existence of a predefined understanding.</p>
+</div>
+<div id="estimating-the-quality-of-ratings-for-a-new-rater" class="section level1">
+<h1>2 Estimating the quality of ratings for a new rater</h1>
+<p>Within the framework of the <em>Iota Concept</em>, this is realized
+with the function <code>check_new_rater()</code>. In order to estimate
+how well a new rater has developed the understanding documented in a
+coding scheme, data and material from existing sources must be used. The
+new rater assigns the material to categories and the assignments are
+compared to the existing assignments of the material. Based on this
+data, the <em>Assignment Error Matrix</em> for the new rater can be
+calculated.</p>
+<p>To illustrate this process, we continue the example from the first <a href="iotarelr.html">vignette</a>. First, we simulate an “old” study by
+calculating Iota2 for the example. Second, we calculate the most likely
+true category for each coding unit. These assignments serve us as “true”
+categories. In practice, these steps do not have to be performed in
+every case. If an old source provides the final assignments of coding
+units, these values can be used as “true” values.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iotarelr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>res_iota2<span class="ot">&lt;-</span><span class="fu">compute_iota2</span>(<span class="at">data=</span>iotarelr_written_exams[<span class="fu">c</span>(<span class="st">&quot;Coder A&quot;</span>,<span class="st">&quot;Coder B&quot;</span>,<span class="st">&quot;Coder C&quot;</span>)],</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">random_starts =</span> <span class="dv">10</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>expected_categories<span class="ot">&lt;-</span><span class="fu">est_expected_categories</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>iotarelr_written_exams[<span class="fu">c</span>(<span class="st">&quot;Coder A&quot;</span>,<span class="st">&quot;Coder B&quot;</span>,<span class="st">&quot;Coder C&quot;</span>)],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">aem=</span>res_iota2<span class="sc">$</span>categorical_level<span class="sc">$</span>raw_estimates<span class="sc">$</span>assignment_error_matrix)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>true_values<span class="ot">&lt;-</span>expected_categories<span class="sc">$</span>expected_category</span></code></pre></div>
+<p>Third, a new rater has to rate the same material as the old source.
+That is, the new rater has to rate the same exams with the same coding
+scheme. Their results are saved in the vector
+<code>iotarelr_new_rater</code>. Now, we can request the reliability
+estimate for this rater by requesting the function
+<code>check_new_rater()</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>res_new_rater<span class="ot">&lt;-</span><span class="fu">check_new_rater</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">true_values =</span> true_values,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">assigned_values =</span> iotarelr_new_rater)</span></code></pre></div>
+<p>The resulting object is of the class <code>iotarelr_iota2</code>.
+Thus, we can use the function <code>get_summary()</code> to look into
+the results.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_summary</span>(res_new_rater)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Summary</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call: check_new_rater</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of Raters: 1</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of Categories: 3</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Categories: average,good,poor</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of Coding Units: 318</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Random Start: NA</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Log-Likelihood: NA</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Primary Parameters</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Assignment Error Matrix</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         average  good  poor</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; average   0.380 0.239 0.380</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; good      0.167 0.417 0.417</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; poor      0.313 0.178 0.509</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Categorical Sizes</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; average    good    poor </span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.242   0.245   0.513 </span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Categorical Level</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           dimensions average   good   poor</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1              Alpha  0.3804 0.4167 0.5092</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2               Beta    0.49 0.6287  0.337</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3               Iota  0.2078 0.2591 0.3692</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  Iota Error Type I  0.3383 0.3628 0.3559</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Iota Error Type II  0.4539 0.3781 0.2749</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Scale Level</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Iota Index: 0.231</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Static Iota Index: 0.005</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dynamic Iota Index: 0.213</span></span></code></pre></div>
+<p>Focusing on the <em>Assignment Error Matrix</em>, the values on the
+diagonal are very low. This leads to low vales for the <em>Alpha
+Reliability</em>, which is about 38.04% for average exams, about 41.67%
+for good exams and about 50.92% for poor exams. Thus, the chance is very
+high for this new rater to assign the false categories. Please note that
+the interpretation of these values is now slightly different from the
+development phase. Here, the high values indicate that the new rater has
+a high chance to assign different categories to a coding unit as they
+were assigned in the old study.</p>
+<p>This is also documented in the values for <em>Iota</em>, which range
+between .2078 for average exams to .3692 for the poor exams. The
+<em>Dynamic Iota Index</em> is quite low with .213 Finally, we can plot
+the results for the new rater.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_iota</span>(res_new_rater)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="data:image/png;base64,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" alt="Figure 1: Plot of Iota for a New Rater" />
+<p class="caption">
+Figure 1: Plot of Iota for a New Rater
+</p>
+</div>
+<p>The plot of <em>Iota</em> for the new rater emphasizes that he is
+able to recover only a small number of true categories for all kinds of
+exams. Additionally we can also plot the corresponding coding stream of
+this new rater.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_alluvial_new_rater<span class="ot">&lt;-</span><span class="fu">plot_iota2_alluvial</span>(res_new_rater)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot_alluvial_new_rater)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="data:image/png;base64,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" alt="Figure 2: Stream Plot" />
+<p class="caption">
+Figure 2: Stream Plot
+</p>
+</div>
+<p>The boxes on the left side represent how the true categories are
+distributed in the population. Their height directly reflects the true
+categorical sizes. The boxes on the right side show the amounts in the
+labeled data. The curves between the two pairs of boxes illustrate the
+coding process.</p>
+<p><strong>Average exams:</strong> Focusing on the true average exams,
+the plot illustrates that approximately one third of truly average exams
+are labeled average. This is represented by the big red stream going
+from true average to labeled as average. The rest of the exams that are
+truly average is falsely labeled as either poor or good exams. This is
+shown by the curves going from true average to the respectively labeled
+category (good or poor). Most of the exams that really are average are
+not identified as that.</p>
+<p>In this alluvial plot, the box for true average exams is slightly
+smaller than that of the ones labeled as average. That means that the
+coding scheme tends to overestimate the number of average exams. These
+false interpretations mostly stem from the true poor category that are
+labeled as average, shown by the big blue curve going into ‘labeled as
+average’. In contrast, only a small portion of truly good exams are
+incorrectly labeled as average, demonstrated by the rather small green
+curve going from true good to labeled as average.</p>
+<p><strong>Good exams:</strong> Looking at the good exams, the minority
+of truly good exams are labeled correctly. This is shown by the green
+curve going from left (true good exams) to right (labeled as good). Most
+of the other truly good exams are labeled as poor, which is quite a big
+difference.</p>
+<p>The size of the boxes of the “true good” exams and “the labeled as
+good” exams is very similar, however the latter is almost entirely made
+up of the wrong exams. This means that the category seems to have the
+right size, but truly is not represented correctly because a lot of
+truly poor and some truly average exams are falsely labeled as good.
+This can be seen by the bigger blue and smaller red curve going into the
+box on the right side. In this sense, the coding scheme estimates the
+number of good exams almost correctly with a slight tendency to
+overestimate.</p>
+<p><strong>Poor exams:</strong> Regarding the poor exams, the labeled
+poor exams box is a little bit smaller than the one for the true poor
+exams. The composition of these boxes is very different, however. About
+half of the truly poor exams are labeled correctly, represented by the
+big blue bar going from left to right. The remainder of the truly poor
+exams is either labeled as good or average. Most falsely labeled but
+truly poor exams are labeled average (the bigger blue curve) and some
+are labeled good (smaller blue curve). Regarding the “labeled as poor”
+exams on the right, the box is made up of truly poor exams to
+approximately 50%, with the remainder coming from truly good (the green
+curve) or average (the red curve) exams. This means that only half of
+the exams that are truly poor are also recognized as poor.</p>
+<p>The box on the left (true poor) and on the right (labeled as poor)
+have a similar size, although the right one is slightly smaller. This
+means that the total number of poor exams is estimated quite correct
+with a slight tendency to underestimate.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>3 Conclusion</h1>
+<p>The function <code>check_new_rater()</code> provides detailed
+insights into how a new rater has acquired their understanding of an
+existing coding scheme. This information can be used to individually
+guide the training process of new raters, since the <em>Assignment Error
+Matrix</em> and <em>Iota Reliability</em> provide hints where errors
+occur and where everything is fine. This can increase the quality of
+codings and saves both costs and time, making the replication and
+comparison of studies using content analysis easier.</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<ul>
+<li>Früh, W. (2017). Inhaltsanalyse: Theorie und Praxis (9.,
+überarbeitete Auflage). UTB.</li>
+<li>Krippendorff, K. (2019). Content Analysis: An Introduction to Its
+Methodology (4th Ed.). SAGE.</li>
+<li>Kuckartz, U. (2018). Qualitative Inhaltsanalyse: Methoden, Praxis,
+Computerunterstützung (4. Auflage). Grundlagentexte Methoden.
+Beltz.</li>
+<li>Mayring, P. (2015). Qualitative Inhaltsanalyse: Grundlagen und
+Techniken (12., überarbeitete Auflage). Beltz.</li>
+<li>Schreier, M. (2012). Qualitative Content Analysis in Practice.
+SAGE.</li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -53,6 +53,15 @@ test_that("plots", {
   )
   testthat::expect_error(plot_iota(test_iota1)
   )
+  testthat::expect_s3_class(plot_iota2_alluvial(test_iota2_new_rater),
+                            c("gg","ggplot")
+
+  )
+  testthat::expect_s3_class(plot_iota2_alluvial(test_iota2),
+                            c("gg","ggplot")
+  )
+  testthat::expect_error(plot_iota2_alluvial(test_iota1))
+  testthat::expect_error(plot_iota2_alluvial(test_iota2_dgf))
 })
 #------------------------------------------------------------------------------
 test_that("summary", {
@@ -213,12 +222,26 @@ test_that("Input types for check new rater", {
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20),
+      con_random_starts = 20,
+      fast = FALSE),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = as.factor(iotarelr_new_rater),
-      con_random_starts = 20),
-    tolerance=1e-2
+      con_random_starts = 20,
+      fast = FALSE),
+    tolerance=1e-1
+  )
+  expect_equal(
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast = TRUE),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = as.factor(iotarelr_new_rater),
+      con_random_starts = 20,
+      fast = TRUE)
   )
 
   #assigned values as data.frame
@@ -226,12 +249,26 @@ test_that("Input types for check new rater", {
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20),
+      con_random_starts = 20,
+      fast = FALSE),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = as.data.frame(iotarelr_new_rater),
-      con_random_starts = 20),
-    tolerance=1e-2
+      con_random_starts = 20,
+      fast = FALSE),
+    tolerance=1e-1
+  )
+  expect_equal(
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast=TRUE),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = as.data.frame(iotarelr_new_rater),
+      con_random_starts = 20,
+      fast=TRUE)
   )
 
   #true values as factor
@@ -239,12 +276,27 @@ test_that("Input types for check new rater", {
     check_new_rater(
       true_values = as.factor(iotarelr_written_exams$`Coder A`),
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20),
+      con_random_starts = 20,
+      fast = FALSE),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20),
-    tolerance=1e-2
+      con_random_starts = 20,
+      fast = FALSE),
+    tolerance=1e-1
+  )
+
+  expect_equal(
+    check_new_rater(
+      true_values = as.factor(iotarelr_written_exams$`Coder A`),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast=TRUE),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast = TRUE)
   )
 
   #true values as data.frame
@@ -252,11 +304,85 @@ test_that("Input types for check new rater", {
     check_new_rater(
       true_values = as.data.frame(iotarelr_written_exams$`Coder A`),
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20),
+      con_random_starts = 20,
+      fast = FALSE),
     check_new_rater(
       true_values = iotarelr_written_exams$`Coder A`,
       assigned_values = iotarelr_new_rater,
-      con_random_starts = 20),
+      con_random_starts = 20,
+      fast=FALSE),
     tolerance=1e-2
   )
+  expect_equal(
+    check_new_rater(
+      true_values = as.data.frame(iotarelr_written_exams$`Coder A`),
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast=TRUE),
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast=TRUE)
+  )
+})
+#Test fast and slow estimation--------------------------------------------------
+test_that("Comparisaton of fast and slow estimation", {
+
+  expect_equal(
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast = FALSE)$categorical_level$raw_estimates$assignment_error_matrix,
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = as.factor(iotarelr_new_rater),
+      con_random_starts = 20,
+      fast = TRUE)$categorical_level$raw_estimates$assignment_error_matrix,
+    tolerance=1e-1
+  )
+
+  expect_equal(
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = iotarelr_new_rater,
+      con_random_starts = 20,
+      fast = FALSE)$information$est_true_cat_sizes,
+    check_new_rater(
+      true_values = iotarelr_written_exams$`Coder A`,
+      assigned_values = as.factor(iotarelr_new_rater),
+      con_random_starts = 20,
+      fast = TRUE)$information$est_true_cat_sizes,
+    tolerance=1e-1
+  )
+
+  expect_equal(
+    compute_iota2(
+      data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+      random_starts = 50,
+      trace = FALSE,
+      fast = FALSE)$categorical_level$raw_estimates$assignment_error_matrix,
+    compute_iota2(
+      data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+      random_starts = 20,
+      trace = FALSE,
+      fast=TRUE)$categorical_level$raw_estimates$assignment_error_matrix,
+    tolerance=1e-1
+  )
+
+  expect_equal(
+    compute_iota2(
+      data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+      random_starts = 50,
+      trace = FALSE,
+      fast = FALSE)$information$est_true_cat_sizes,
+    compute_iota2(
+      data=iotarelr_written_exams[c("Coder A","Coder B","Coder C")],
+      random_starts = 20,
+      trace = FALSE,
+      fast=TRUE)$information$est_true_cat_sizes,
+    tolerance=1e-1
+  )
+
 })

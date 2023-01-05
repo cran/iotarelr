@@ -79,6 +79,10 @@ get_patterns<-function(data,categorical_levels){
 #' @param con_rel_convergence \code{Double} for determining the convergence
 #' criterion during the conditioning stage. The algorithm stops if the relative change
 #' is smaller than this criterion.
+#' @param fast \code{Bool} If \code{TRUE} a fast estimation is applied during the
+#' condition stage. This option ignores all parameters beginning with "con_".
+#' If \code{FALSE} the estimation described in Berding and
+#' Pargmann (2022) is used. Default is \code{TRUE}.
 #'@param trace \code{TRUE} for printing progress information on the console.
 #'\code{FALSE} if this information is not to be printed.
 #'@param con_trace \code{TRUE} for printing progress information on the console
@@ -157,8 +161,8 @@ get_patterns<-function(data,categorical_levels){
 #' \item{\code{n_cunits: }}
 #' {Number of coding units.}
 #' }}
-#'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-#'of the Second Generation.Measures for Content Analysis Done by
+#'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'of the Second Generation. Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
 #' @export
@@ -171,6 +175,7 @@ compute_iota2<-function(data,
                         con_max_iterations=5000,
                         con_random_starts=5,
                         b_min=.01,
+                        fast=TRUE,
                         trace=TRUE,
                         con_trace=FALSE){
 
@@ -220,6 +225,7 @@ compute_iota2<-function(data,
                             con_random_starts=con_random_starts,
                             con_max_iterations = con_max_iterations,
                             con_rel_convergence = con_rel_convergence,
+                            fast=fast,
                             trace=trace,
                             con_trace = con_trace)
   #-------------------------------------------------------------------------
@@ -347,8 +353,8 @@ compute_iota2<-function(data,
 #' {The Dynamic Iota Index, which is a transformation of the original Iota Index,
 #' in order to consider the uncertainty of estimation.}
 #' }
- #'@references  Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-#'of the Second Generation.Measures for Content Analysis Done by
+ #'@references  Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+#'of the Second Generation. Measures for Content Analysis Done by
 #'Humans or Artificial Intelligences. Berlin: Logos.
 #'https://doi.org/10.30819/5581
 #' @export

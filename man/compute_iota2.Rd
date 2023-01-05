@@ -14,6 +14,7 @@ compute_iota2(
   con_max_iterations = 5000,
   con_random_starts = 5,
   b_min = 0.01,
+  fast = TRUE,
   trace = TRUE,
   con_trace = FALSE
 )
@@ -49,6 +50,11 @@ within the conditioning stage.}
 \item{b_min}{Value ranging between 0 and 1, determining the minimal size of
 the categories for checking if boundary values occurred. The algorithm tries
 to select solutions that are not considered to be boundary values.}
+
+\item{fast}{\code{Bool} If \code{TRUE} a fast estimation is applied during the
+condition stage. This option ignores all parameters beginning with "con_".
+If \code{FALSE} the estimation described in Berding and
+Pargmann (2022) is used. Default is \code{TRUE}.}
 
 \item{trace}{\code{TRUE} for printing progress information on the console.
 \code{FALSE} if this information is not to be printed.}
@@ -133,8 +139,8 @@ regarding the parameter estimation. It comprises the following elements:
 Fits a model of Iota2 to the data
 }
 \references{
-Berding, Florian, and Pargmann, Julia (2022).Iota Reliability Concept
-of the Second Generation.Measures for Content Analysis Done by
+Florian Berding and Julia Pargmann (2022).Iota Reliability Concept
+of the Second Generation. Measures for Content Analysis Done by
 Humans or Artificial Intelligences. Berlin: Logos.
 https://doi.org/10.30819/5581
 }

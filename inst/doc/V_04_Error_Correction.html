@@ -12,7 +12,7 @@
 
 <meta name="author" content="Florian Berding and Julia Pargmann" />
 
-<meta name="date" content="2023-01-05" />
+<meta name="date" content="2023-02-27" />
 
 <title>4) Error Correction</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">4) Error Correction</h1>
 <h4 class="author">Florian Berding and Julia Pargmann</h4>
-<h4 class="date">2023-01-05</h4>
+<h4 class="date">2023-02-27</h4>
 
 
 
@@ -413,12 +413,12 @@ source. The results are saved in the object
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">aem=</span>res_iota2<span class="sc">$</span>categorical_level<span class="sc">$</span>raw_estimates<span class="sc">$</span>assignment_error_matrix)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(expected_categories)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Coder A Coder B Coder C prob_average  prob_good  prob_poor expected_category</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 average average    good 4.842757e-01 0.36360971 0.15211459           average</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average 2.943907e-07 0.27618344 0.72381627              poor</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor 6.582454e-15 0.12925157 0.87074843              poor</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 average average average 9.169925e-01 0.04110217 0.04190534           average</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good 3.066093e-08 0.48183969 0.51816028              poor</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average 6.582454e-15 0.12925157 0.87074843              poor</span></span></code></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 average average    good 4.843042e-01 0.36354882 0.15214698           average</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average 8.666331e-08 0.27607873 0.72392118              poor</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor 5.704391e-16 0.12917318 0.87082682              poor</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 average average average 9.169907e-01 0.04109578 0.04191355           average</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good 9.027516e-09 0.48170163 0.51829836              poor</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average 5.704391e-16 0.12917318 0.87082682              poor</span></span></code></pre></div>
 <p>The resulting object contains the ratings and additional columns. The
 columns contain the probability that a coding unit belongs to a specific
 true category. The most plausible category is always presented in the

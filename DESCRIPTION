@@ -1,7 +1,7 @@
 Type: Package
 Package: iotarelr
 Title: Iota Inter Coder Reliability for Content Analysis
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(
     person("Berding", "Florian", , "florian.berding@uni-hamburg.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3593-1695")),
@@ -33,9 +33,9 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
 NeedsCompilation: yes
-Packaged: 2023-01-05 10:24:17 UTC; WissMit
+Packaged: 2023-02-27 14:48:50 UTC; WissMit
 Author: Berding Florian [aut, cre] (<https://orcid.org/0000-0002-3593-1695>),
   Pargmann Julia [ctb]
 Maintainer: Berding Florian <florian.berding@uni-hamburg.de>
 Repository: CRAN
-Date/Publication: 2023-01-05 21:40:02 UTC
+Date/Publication: 2023-02-27 23:42:29 UTC

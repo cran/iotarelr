@@ -12,7 +12,7 @@
 
 <meta name="author" content="Florian Berding and Julia Pargmann" />
 
-<meta name="date" content="2023-02-27" />
+<meta name="date" content="2024-01-25" />
 
 <title>4) Error Correction</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">4) Error Correction</h1>
 <h4 class="author">Florian Berding and Julia Pargmann</h4>
-<h4 class="date">2023-02-27</h4>
+<h4 class="date">2024-01-25</h4>
 
 
 
@@ -383,15 +383,15 @@ raters. The error correction can be requested with the function
 probability that a coding unit belongs to a specific true category under
 the condition of the observed pattern. To illustrate the error
 correction, a look into the data set is helpful.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iotarelr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iotarelr_written_exams)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Coder A Coder B Coder C    Sex</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 average average    good female</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average   male</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor female</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 average average average female</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good female</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average female</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(iotarelr)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">head</span>(iotarelr_written_exams)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;   Coder A Coder B Coder C    Sex</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt; 1 average average    good female</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average   male</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor female</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt; 4 average average average female</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good female</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average female</span></span></code></pre></div>
 <p>The first 6 rows of the data set show that the three raters do not
 agree on all coding units. While the raters agree on the first two
 exams, they disagree partially on exams 3 to 6. In particular, two
@@ -404,21 +404,21 @@ Error Matrix</em>. In the next step, we pass the estimated
 <code>est_expected_categories()</code> and use the ratings as our data
 source. The results are saved in the object
 <code>expected_categories</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>res_iota2<span class="ot">&lt;-</span><span class="fu">compute_iota2</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>iotarelr_written_exams[<span class="fu">c</span>(<span class="st">&quot;Coder A&quot;</span>,<span class="st">&quot;Coder B&quot;</span>,<span class="st">&quot;Coder C&quot;</span>)],</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_starts =</span> <span class="dv">10</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>expected_categories<span class="ot">&lt;-</span><span class="fu">est_expected_categories</span>(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>iotarelr_written_exams[<span class="fu">c</span>(<span class="st">&quot;Coder A&quot;</span>,<span class="st">&quot;Coder B&quot;</span>,<span class="st">&quot;Coder C&quot;</span>)],</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">aem=</span>res_iota2<span class="sc">$</span>categorical_level<span class="sc">$</span>raw_estimates<span class="sc">$</span>assignment_error_matrix)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(expected_categories)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Coder A Coder B Coder C prob_average  prob_good  prob_poor expected_category</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 average average    good 4.843042e-01 0.36354882 0.15214698           average</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average 8.666331e-08 0.27607873 0.72392118              poor</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor 5.704391e-16 0.12917318 0.87082682              poor</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 average average average 9.169907e-01 0.04109578 0.04191355           average</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good 9.027516e-09 0.48170163 0.51829836              poor</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average 5.704391e-16 0.12917318 0.87082682              poor</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>res_iota2<span class="ot">&lt;-</span><span class="fu">compute_iota2</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="at">data=</span>iotarelr_written_exams[<span class="fu">c</span>(<span class="st">&quot;Coder A&quot;</span>,<span class="st">&quot;Coder B&quot;</span>,<span class="st">&quot;Coder C&quot;</span>)],</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="at">random_starts =</span> <span class="dv">10</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>expected_categories<span class="ot">&lt;-</span><span class="fu">est_expected_categories</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="at">data=</span>iotarelr_written_exams[<span class="fu">c</span>(<span class="st">&quot;Coder A&quot;</span>,<span class="st">&quot;Coder B&quot;</span>,<span class="st">&quot;Coder C&quot;</span>)],</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="at">aem=</span>res_iota2<span class="sc">$</span>categorical_level<span class="sc">$</span>raw_estimates<span class="sc">$</span>assignment_error_matrix)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">head</span>(expected_categories)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;   Coder A Coder B Coder C prob_average  prob_good  prob_poor expected_category</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 1 average average    good 4.843037e-01 0.36354979 0.15214646           average</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average 1.608791e-07 0.27608040 0.72391944              poor</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor 1.965794e-15 0.12917444 0.87082556              poor</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 4 average average average 9.169907e-01 0.04109589 0.04191342           average</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good 1.675836e-08 0.48170385 0.51829614              poor</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average 1.965794e-15 0.12917444 0.87082556              poor</span></span></code></pre></div>
 <p>The resulting object contains the ratings and additional columns. The
 columns contain the probability that a coding unit belongs to a specific
 true category. The most plausible category is always presented in the

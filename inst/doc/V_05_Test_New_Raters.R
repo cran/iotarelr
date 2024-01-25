@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -22,11 +22,11 @@ res_new_rater<-check_new_rater(
 ## -----------------------------------------------------------------------------
 get_summary(res_new_rater)
 
-## ---- fig.height = 3, fig.width = 7.2, fig.align = "center", fig.cap="Figure 1: Plot of Iota for a New Rater"----
+## ----fig.height = 3, fig.width = 7.2, fig.align = "center", fig.cap="Figure 1: Plot of Iota for a New Rater"----
 plot_iota(res_new_rater)
 
 
-## ---- fig.height = 5, fig.width = 7.2, fig.align = "center", fig.cap="Figure 2: Stream Plot"----
+## ----fig.height = 5, fig.width = 7.2, fig.align = "center", fig.cap="Figure 2: Stream Plot"----
 plot_alluvial_new_rater<-plot_iota2_alluvial(res_new_rater)
 plot(plot_alluvial_new_rater)
 

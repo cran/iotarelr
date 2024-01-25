@@ -1,7 +1,7 @@
 Type: Package
 Package: iotarelr
 Title: Iota Inter Coder Reliability for Content Analysis
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(
     person("Berding", "Florian", , "florian.berding@uni-hamburg.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3593-1695")),
@@ -23,19 +23,19 @@ Description: Routines and tools for assessing the quality of content
 License: GPL-3
 URL: https://fberding.github.io/iotarelr/
 BugReports: https://github.com/FBerding/iotarelr/issues
-Depends: R (>= 3.5.0), ggplot2, ggalluvial,
-Imports: gridExtra, methods, Rcpp, rlang, stats
+Depends: R (>= 3.5.0)
+Imports: ggplot2, ggalluvial, gridExtra, methods, Rcpp, rlang, stats
 Suggests: knitr, rmarkdown, testthat (>= 3.0.0)
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 NeedsCompilation: yes
-Packaged: 2023-02-27 14:48:50 UTC; WissMit
+Packaged: 2024-01-25 08:06:34 UTC; WissMit
 Author: Berding Florian [aut, cre] (<https://orcid.org/0000-0002-3593-1695>),
   Pargmann Julia [ctb]
 Maintainer: Berding Florian <florian.berding@uni-hamburg.de>
 Repository: CRAN
-Date/Publication: 2023-02-27 23:42:29 UTC
+Date/Publication: 2024-01-25 08:50:02 UTC

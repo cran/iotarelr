@@ -12,7 +12,7 @@
 
 <meta name="author" content="Florian Berding and Julia Pargmann" />
 
-<meta name="date" content="2024-01-25" />
+<meta name="date" content="2025-07-18" />
 
 <title>4) Error Correction</title>
 
@@ -51,7 +51,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -62,7 +62,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">4) Error Correction</h1>
 <h4 class="author">Florian Berding and Julia Pargmann</h4>
-<h4 class="date">2024-01-25</h4>
+<h4 class="date">2025-07-18</h4>
 
 
 
@@ -413,12 +413,12 @@ source. The results are saved in the object
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="at">aem=</span>res_iota2<span class="sc">$</span>categorical_level<span class="sc">$</span>raw_estimates<span class="sc">$</span>assignment_error_matrix)</span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">head</span>(expected_categories)</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;   Coder A Coder B Coder C prob_average  prob_good  prob_poor expected_category</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 1 average average    good 4.843037e-01 0.36354979 0.15214646           average</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average 1.608791e-07 0.27608040 0.72391944              poor</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor 1.965794e-15 0.12917444 0.87082556              poor</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 4 average average average 9.169907e-01 0.04109589 0.04191342           average</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good 1.675836e-08 0.48170385 0.51829614              poor</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average 1.965794e-15 0.12917444 0.87082556              poor</span></span></code></pre></div>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 1 average average    good 4.843038e-01 0.36354973 0.15214649           average</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 2 average    poor average 1.577095e-07 0.27608029 0.72391955              poor</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 3    poor average    poor 1.889099e-15 0.12917436 0.87082564              poor</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 4 average average average 9.169907e-01 0.04109588 0.04191343           average</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 5    poor average    good 1.642820e-08 0.48170371 0.51829628              poor</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 6    poor    poor average 1.889099e-15 0.12917436 0.87082564              poor</span></span></code></pre></div>
 <p>The resulting object contains the ratings and additional columns. The
 columns contain the probability that a coding unit belongs to a specific
 true category. The most plausible category is always presented in the

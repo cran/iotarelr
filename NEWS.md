@@ -1,3 +1,11 @@
+# iotarelr 0.1.8
+
+* Added a logo.
+* Added a new check for data quality in function 'check_new_rater'.
+* New structure of tests.
+* Added new tests.
+* Update code of plots for newer version of 'ggplot2'.
+
 # iotarelr 0.1.7
 
 * Improved checks for function 'check_new_rater' which should avoid errors in c++.

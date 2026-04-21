@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# iotarelr - Iota Inter-Coder-Reliability for Content Analysis
+# iotarelr - Iota Inter-Coder-Reliability for Content Analysis <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 *iotarelr* provides routines and tools for assessing the quality of
 content analysis on the basis of the Iota Reliability Concept. The
@@ -26,14 +26,16 @@ The tools are able to provide answers to the following questions:
 <!-- badges: start -->
 
 [![](https://www.r-pkg.org/badges/version/iotarelr?color=green)](https://cran.r-project.org/package=iotarelr)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/iotarelr)](https://cran.r-project.org/package=iotarelr)
-[![](https://img.shields.io/badge/devel%20version-0.1.6-green.svg)](https://github.com/fberding/iotarelr)
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/iotarelr)](https://cran.r-project.org/package=iotarelr)
+[![Downloads](http://cranlogs.r-pkg.org/badges/last-month/iotarelr?color=blue)](https://cran.r-project.org/package=iotarelr)
+[![](https://img.shields.io/badge/devel%20version-0.1.8-green.svg)](https://github.com/fberding/iotarelr)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Codecov test
 coverage](https://codecov.io/gh/FBerding/iotarelr/graph/badge.svg)](https://app.codecov.io/gh/FBerding/iotarelr)
 [![R-CMD-check](https://github.com/FBerding/iotarelr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FBerding/iotarelr/actions/workflows/R-CMD-check.yaml)
+[![DOI](https://img.shields.io/badge/doi-10.32614/CRAN.package.iotarelr-green.svg)](https://doi.org/10.32614/CRAN.package.iotarelr)
 <!-- badges: end -->
 
 ## Introduction
